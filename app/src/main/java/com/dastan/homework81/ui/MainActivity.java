@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity implements MainContract.View{
     TextView titleText;
     @BindView(R.id.textDesc)
     TextView descText;
-    @BindView(R.id.rvNews)
+
     RecyclerView recyclerViewNews;
 
     private MainContract.Presenter mPresenter;
@@ -53,16 +53,21 @@ public class MainActivity extends BaseActivity implements MainContract.View{
         mPresenter = new MainPresenter();
         mPresenter.bind(this);
         mPresenter.fetchNews();
+        initViews();
+    }
+
+    private void initViews(){
+        recyclerViewNews = findViewById(R.id.rvNews);
     }
 
 
     @Override
-    public void setNewsData(List<Article> newsData) {
+    public void setNewsData(List<Article> list) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerViewNews.setLayoutManager(layoutManager);
         NewsAdapter adapter = new NewsAdapter();
         recyclerViewNews.setAdapter(adapter);
-        adapter.setNewsData(newsData);
+        adapter.setNewsData(list);
     }
 
     @Override

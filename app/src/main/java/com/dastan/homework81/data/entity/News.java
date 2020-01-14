@@ -18,7 +18,7 @@ public class News {
     private Integer totalResults;
     @SerializedName("articles")
     @Expose
-    private List<Article> articles = null;
+    private List<Article> articles;
 
     public String getStatus() {
         return status;
